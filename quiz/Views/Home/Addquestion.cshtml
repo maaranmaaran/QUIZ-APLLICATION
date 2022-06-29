@@ -1,0 +1,118 @@
+﻿@model quiz.Models.TBL_QUESTIONS
+
+@{
+    ViewBag.Title = "Addquestion";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<style>
+   
+
+    #myB {
+        display: none;
+    }
+
+    #myC {
+        display: none;
+    }
+
+    #myD {
+        display: none;
+    }
+</style>
+<h1 style="text-align:center;background-color:#808080">Add Questions</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h1 style="color:green">@TempData["msg"]</h1>
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.q_fk_catid, "Select Category", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("q_fk_catid", ViewBag.list as SelectList, "--Select--", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.q_fk_catid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Q_TEXT, "Enter the Question:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Q_TEXT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Q_TEXT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" id="myA" onclick="myFunction()">
+            @Html.LabelFor(model => model.OPA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OPA, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OPA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group" id="myB" onclick="myFun()" >
+            @Html.LabelFor(model => model.OPB, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OPB, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OPB, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" id="myC"  onclick="my()">
+            @Html.LabelFor(model => model.OPC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OPC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OPC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" id="myD">
+            @Html.LabelFor(model => model.OPD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OPD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OPD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.COP, "Correct Option", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.COP, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.COP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+   
+    var b = document.getElementById("myB");
+    var c = document.getElementById("myC");
+    var d = document.getElementById("myD");
+    
+        function myFunction() {
+            document.getElementById("myB").style.display = "block";
+    }
+    function myFun() {
+        document.getElementById("myC").style.display = "block";
+    }
+    function my() {
+        document.getElementById("myD").style.display = "block";
+    }
+</script>
+
+
